@@ -1,0 +1,28 @@
+version: '3'
+services:
+  eureka1:
+    image: j8-eureka:v1
+    container_name: eureka1
+    environment:
+      - SPRING_PROFILES_ACTIVE=eureka1
+    volumes: 
+      - /Users/junjay/Dev/docker/run/eureka/config/application.yml:/eureka/config/application.yml
+    ports:
+      - 8761:8761
+    networks:
+      - eureka_net
+  eureka2:
+    image: j8-eureka:v1
+    container_name: eureka2
+    environment:
+      - SPRING_PROFILES_ACTIVE=eureka2
+    volumes: 
+      - /Users/junjay/Dev/docker/run/eureka/config/application.yml:/eureka/config/application.yml
+    ports:
+      - 8762:8762
+    networks:
+      - eureka_net
+
+networks:
+  eureka_net:
+    driver: bridge
